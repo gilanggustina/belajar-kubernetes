@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-replication-controller
+spec:
+  replicas: 3
+  selector: #harus sama dengan label pada template.metadata.labels
+    app: nginx
+  template:
+    metadata:
+      name: nginx #ReplcationController akan membuat Pod dengan nama ini dan additional unique ID
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
